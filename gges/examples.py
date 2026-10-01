@@ -48,7 +48,7 @@ def generate_random_points(boundary, epsg=27700, num_points=100):
     rng = np.random.default_rng(42)
     points = []
 
-    while len(points) < 100:
+    while len(points) < num_points:
         x = rng.uniform(xmin, xmax)
         y = rng.uniform(ymin, ymax)
         point = Point(x, y)
@@ -58,12 +58,12 @@ def generate_random_points(boundary, epsg=27700, num_points=100):
 
     # Create a GeoDataFrame
     random_points = gpd.GeoDataFrame(
-        {"id": range(1, 101)},
+        {"ID": range(1, len(points) + 1)},
         geometry=points,
         crs=boundary.crs
     )
 
-    return points
+    return random_points.set_index('ID')
 
 
 def plot_land_cover(nc, shp, ax):
