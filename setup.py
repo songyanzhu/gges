@@ -13,7 +13,7 @@ from setuptools import setup, find_packages
 
 setup(
 	name = "gges",
-	version = "0.0.3",
+	version = "0.0.7",
 	keywords = ("geography", "env science"),
 	description = "Geography and Environmental Science",
 	long_description = "Read/write and process rs/gis related data, especially atmospheric rs data.",
