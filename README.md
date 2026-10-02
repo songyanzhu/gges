@@ -13,10 +13,22 @@ Welcome to `gges`, a practical tutorial series developed for geospatial data sci
 
 ---
 
-**How to install**: >>> !pip install gges==0.0.7 --quiet
+**How to install**: 
 
+In terminal:
+> pip install gges
+
+OR via GitHub to get the latest version (not publised on PYPI yet):
 > pip install git+https://github.com/songyanzhu/gges.git
 
+If you'd like to suppress all the running details:
+> !pip install gges --quiet
+
+Fancy a specific verison:
+> pip install gges==0.0.7
+
+Don't for get to add the exclamation  mark in the front if you are running pip in Jupyter Notebook:
+> !pip install gges
 
 ---
 
