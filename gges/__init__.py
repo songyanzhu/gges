@@ -3,8 +3,9 @@ import sys
 import subprocess
 import importlib
 from pathlib import Path
+from . import functions
 
-__all__ = ["data_path"]
+__all__ = ["data_path", "functions"]
 
 data_path = Path(__file__).parent.joinpath('data')
 
