@@ -9,8 +9,12 @@ Includes modules I contribute to:
 
 
 
-Welcome to geoAI, a practical tutorial series developed for the University of Southampton course:
-*Machine Learning for Geospatial Data Analysis/Science*.
+Welcome to `gges`, a practical tutorial series developed for geospatial data science courses (GGES6030 & 6031) the School of Geography and Environmental Science, University of Southampton 
+
+---
+
+**How to install**: >>> !pip install gges==0.0.7 --quiet
+
 
 ---
 
