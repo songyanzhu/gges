@@ -129,3 +129,124 @@ print(student_accommodations[["name", "type", "postcode", f"dist_to_{target_park
 > **Key Notes:**
 > * **Projected Coordinate Reference System (CRS)**: Distance calculations must be executed on a metric projected CRS (such as `EPSG:27700`) rather than angular geographic coordinates (`EPSG:4326`).
 > * **First-Mile Metric**: Snapping a point directly to graph nodes introduces an offset; adding the Euclidean distance from the origin to the nearest node accounts for the initial access penalty.
+
+---
+
+### Multi-Layer Spatial Visualisation of Shortest Network Paths
+
+Once shortest network paths are computed, layer-by-layer cartographic visualization in `geopandas` and `matplotlib` helps evaluate routing quality, network coverage, and spatial relationships against urban features (such as roads, urban parks, and accommodations).
+
+```python
+import matplotlib.pyplot as plt
+import geopandas as gpd
+
+# ---------------------------------------------------------
+# 1. Compile Valid Path Geometries into a GeoDataFrame
+# ---------------------------------------------------------
+# Filter out None values to prevent geometry rendering exceptions
+valid_paths = [geom for geom in paths_geometry if geom is not None]
+if valid_paths:
+    gdf_paths = gpd.GeoDataFrame(geometry=valid_paths, crs=target_crs)
+else:
+    gdf_paths = gpd.GeoDataFrame(columns=["geometry"], crs=target_crs)
+
+# ---------------------------------------------------------
+# 2. Initialise Plot Canvas and Layered Rendering
+# ---------------------------------------------------------
+fig, ax = plt.subplots(figsize=(12, 10), dpi=300)
+
+# Layer 1: Road network background (subtle grey lines)
+roads_proj.plot(
+    ax=ax,
+    color="#d1d5db",
+    linewidth=0.8,
+    alpha=0.7,
+    zorder=1,
+    label="Road Network (Primary)"
+)
+
+# Layer 2: Greenspaces and highlighted target park
+greenspace_proj.plot(
+    ax=ax,
+    color="#dcfce7",
+    edgecolor="#86efac",
+    linewidth=0.5,
+    alpha=0.6,
+    zorder=2,
+    label="Greenspaces"
+)
+greenspace_proj[greenspace_proj["name"] == target_park_name].plot(
+    ax=ax,
+    color="#22c55e",
+    edgecolor="#15803d",
+    linewidth=1.5,
+    zorder=3,
+    label=f"Target: {target_park_name}"
+)
+
+# Layer 3: Computed shortest paths (prominent orange trajectories)
+if not gdf_paths.empty:
+    gdf_paths.plot(
+        ax=ax,
+        color="#f97316",
+        linewidth=2.0,
+        alpha=0.85,
+        linestyle="-",
+        zorder=4,
+        label="Shortest Paths"
+    )
+
+# Layer 4: Origin student accommodation points categorized by type
+student_acc_proj.plot(
+    ax=ax,
+    column="type",
+    cmap="Set1",
+    markersize=55,
+    edgecolor="black",
+    linewidth=0.8,
+    zorder=5,
+    legend=True,
+    legend_kwds={"title": "Accommodation Type", "loc": "lower right"}
+)
+
+# ---------------------------------------------------------
+# 3. Text Annotation for Points of Interest
+# ---------------------------------------------------------
+for _, row in student_acc_proj.iterrows():
+    ax.annotate(
+        text=row["name"],
+        xy=(row.geometry.x, row.geometry.y),
+        xytext=(4, 4),
+        textcoords="offset points",
+        fontsize=7,
+        color="#1f2937",
+        fontweight="medium"
+    )
+
+# ---------------------------------------------------------
+# 4. Cartographic Styling, Bounds, and Axes Setup
+# ---------------------------------------------------------
+ax.set_title(
+    f"Shortest Network Routes from Student Accommodations to {target_park_name}",
+    fontsize=13,
+    fontweight="bold",
+    pad=15
+)
+ax.set_xlabel("Easting (m)", fontsize=9)
+ax.set_ylabel("Northing (m)", fontsize=9)
+
+# Adjust plot extents with a buffer around origins and destinations
+total_bounds = student_acc_proj.total_bounds
+ax.set_xlim(total_bounds[0] - 5000, total_bounds[2] + 5000)
+ax.set_ylim(total_bounds[1] - 5000, total_bounds[3] + 5000)
+
+ax.set_aspect("equal")
+ax.grid(True, linestyle="--", alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+```
+
+> **Key Notes:**
+> * **Z-order Control**: Explicit `zorder` values guarantee that point symbols and route lines are not occluded by polygon fills or dense road meshes.
+> * **Spatial Aspect Ratio**: Setting `ax.set_aspect("equal")` preserves metric proportions across projected coordinates.
