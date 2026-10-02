@@ -13,7 +13,13 @@ Welcome to `gges`, a practical tutorial series developed for geospatial data sci
 
 ---
 
-**How to install**: 
+Instructor: [Songyan Zhu](https://www.southampton.ac.uk/people/665c6d/doctor-songyan-zhu#research); Contact: Songyan.Zhu@soton.ac.uk
+
+This series is designed to guide you through the essential tools and techniques needed to apply artificial intelligence to real-world geospatial problems. Whether you're just starting out in Python or transitioning from R, this series will help you build a strong foundation in geospatial data science, with a special focus on machine learning applications.
+
+---
+
+# How to install 
 
 In terminal:
 > pip install gges
@@ -29,12 +35,6 @@ Fancy a specific verison:
 
 Don't for get to add the exclamation  mark in the front if you are running pip in Jupyter Notebook:
 > !pip install gges
-
----
-
-Instructor: [Songyan Zhu](https://www.southampton.ac.uk/people/665c6d/doctor-songyan-zhu#research); Contact: Songyan.Zhu@soton.ac.uk
-
-This series is designed to guide you through the essential tools and techniques needed to apply artificial intelligence to real-world geospatial problems. Whether you're just starting out in Python or transitioning from R, this series will help you build a strong foundation in geospatial data science, with a special focus on machine learning applications.
 
 ---
 
