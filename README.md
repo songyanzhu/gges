@@ -15,6 +15,8 @@ Welcome to `gges`, a practical tutorial series developed for geospatial data sci
 
 **How to install**: >>> !pip install gges==0.0.7 --quiet
 
+> pip install git+https://github.com/songyanzhu/gges.git
+
 
 ---
 
