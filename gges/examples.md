@@ -51,7 +51,7 @@ from shapely.geometry import Point, LineString
 target_crs = "EPSG:27700"
 
 # Filter to the first accommodation record for evaluation
-student_accommodations = student_accommodations_r.iloc[[0], :].copy()
+student_accommodations = student_accommodations_all.iloc[[0], :].copy()
 
 # Reproject all spatial datasets to the British National Grid (BNG)
 roads_proj = roads.to_crs(target_crs)
