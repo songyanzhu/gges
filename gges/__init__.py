@@ -56,9 +56,11 @@ def _try_import(
 
 np = _try_import("numpy",     "numpy")
 pd = _try_import("pandas",    "pandas")
-matplotlib = _try_import("matplotlib", "matplotlib")
+plt = _try_import("matplotlib.pyplot", "matplotlib")
 rio = _try_import("rasterio",  "rasterio")
 gpd = _try_import("geopandas", "geopandas")
 xr = _try_import("xarray",    "xarray")
 rxr = _try_import("rioxarray", "rioxarray")
 sns = _try_import("seaborn", "seaborn")
+
+__all__ += ["np", "pd", "matplotlib", "rio", "gpd", "xr", "rxr", "sns", "plt"]
