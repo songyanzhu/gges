@@ -3,9 +3,8 @@ import sys
 import subprocess
 import importlib
 from pathlib import Path
-from . import functions
 
-__all__ = ["data_path", "functions"]
+__all__ = ["data_path"]
 
 data_path = Path(__file__).parent.joinpath('data')
 
@@ -65,3 +64,8 @@ rxr = _try_import("rioxarray", "rioxarray")
 sns = _try_import("seaborn", "seaborn")
 
 __all__ += ["np", "pd", "matplotlib", "rio", "gpd", "xr", "rxr", "sns", "plt"]
+
+
+from . import functions
+
+__all__ += ["functions"]
