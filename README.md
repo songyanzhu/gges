@@ -31,7 +31,7 @@ If you'd like to suppress all the running details:
 > !pip install gges --quiet
 
 Fancy a specific verison:
-> pip install gges==0.0.7
+> pip install gges==0.0.9
 
 Don't for get to add the exclamation  mark in the front if you are running pip in Jupyter Notebook:
 > !pip install gges
