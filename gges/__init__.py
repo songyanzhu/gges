@@ -63,7 +63,7 @@ xr = _try_import("xarray",    "xarray")
 rxr = _try_import("rioxarray", "rioxarray")
 sns = _try_import("seaborn", "seaborn")
 
-__all__ += ["np", "pd", "matplotlib", "rio", "gpd", "xr", "rxr", "sns", "plt"]
+__all__ += ["np", "pd", "plt", "rio", "gpd", "xr", "rxr", "sns"]
 
 
 from . import functions
