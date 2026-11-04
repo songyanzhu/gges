@@ -1,4 +1,4 @@
-# Week 9 data
+# Week 8 data
 
 All observation and geometry files are supplied locally. Students do not need to download data or use an API key.
 
