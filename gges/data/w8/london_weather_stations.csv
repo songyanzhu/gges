@@ -1,0 +1,7 @@
+station_id,station_name,icao,latitude,longitude,rain_ml_station
+03672099999,Northolt,EGWU,51.553,-0.418,True
+03766399999,Biggin Hill,EGKB,51.331,0.033,False
+03768399999,London City,EGLC,51.505,0.055,False
+03770099999,St James Park,,51.5,-0.117,False
+03772099999,London Heathrow,EGLL,51.478,-0.461,True
+03781099999,Kenley Airfield,,51.3,-0.083,True
